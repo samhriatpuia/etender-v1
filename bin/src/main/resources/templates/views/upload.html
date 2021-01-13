@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{fragments/main_layout}" >
+<head>
+ <title>Index Page</title>
+</head>
+<body style="background-color: #f3f3f3;">
+
+    <!--  <div  layout:fragment="content" class="container mySpace"> -->
+    
+     <div  layout:fragment="content">
+
+<!-- <h1>Spring Boot file upload example</h1>
+ <h2 th:text="${message}"> </h2>
+<form method="POST" th:action="@{/upload}" enctype="multipart/form-data">
+    <input type="file" name="fileupload" /><br/><br/>
+    <input type="submit" value="Submit" />
+</form> -->
+
+
+<!-- 
+
+
+								 Thanpuia Fanai
+ 
+ 
+ -->
+
+
+  
+<div class="fullbodycontainer">
+		<!-- header
+			*********************************** -->
+		<div class="bodycontainer">
+			
+			<div class="banner">
+				 <!--img src="images/Banner.jpg"-->
+			</div>
+
+			<div class="bodywrapper">
+					<!-- Search area placed here-->
+					
+				<div class="searchArea">
+					<p class="searchtext">Get the best deal of Tender</p>
+					<p class="searchtext2">Search Tender</p>
+					<div class="buttonArea">
+							<!--Search Form-->
+						<form>
+							
+								<input type="text" name="general" class="element" placeholder="What are you looking for?">
+							<!--div class="inputWithIcon"-->
+								<select name="bydepartment" class="element">
+									<option value="disabled selected">Search By Department</option>
+									<option value="ICT">ICT</option>
+									<option value="pwd">PWD</option>
+								</select>
+								<!-- Newly Added -->
+							 <input  class=" element" type="text" placeholder="Search By Date"  id="searchDate">
+							 <!-- newly added ends here -->
+							<input type="submit" name="submit" value="Submit" class="element elbutton">
+
+						</form>
+					</div>
+				</div>
+			</div><!--Close bodywrapper-->
+	
+						<!--Dynamic Part -->
+						<!--**********
+								**********
+								start for loop
+								
+								*********
+								********	-->
+				<div class="bodywrapper">
+					<div class="main1">
+						<div class="tenderbox">
+
+							<p class="body_header">Add Tender</p>
+								<!--/////////////////////////-->
+							
+								<div class="white_area boxwhite">
+								
+								
+								<h2 th:text="${message}"> </h2>
+                   			<form method="POST" th:action="@{uploadimg}" enctype="multipart/form-data">
+								<h4 class="element contact-data fwidth upload-button">File </h4>  <input type="file" name="fileupload"  style="border: none; width:99px;padding-left: 5px; margin-left: -6px;">
+								<input type="submit" value="Submit" />
+								</form>	
+								<br>
+									<br>
+										<form class="contact-us-form" method="POST" th:action="@{/upload}" enctype="multipart/form-data" th:object="${tenderMain}">
+											<span>
+												<!-- <select class="contact-data contact-textbox zonun_text fwidth">
+													<option value="1">Select Department User</option>
+													<option value="2">2</option>
+												</select> -->
+												
+												
+													<select th:field="*{department}" class="modal-textbox" >
+							 				<option value="disabled selected">Select Department User</option> 
+																<option th:each="department : ${departments}"
+																th:text="${department.name}"
+																th:value="${department.id}">
+									
+																</option>
+													</select>
+								
+												
+											</span>
+											<!-- 1 Aug added -->
+											
+											<<!-- input type="text" name="attachment" class="element contact-data contact-textbox zonun_text fwidth" placeholder="Attachment">  -->
+											<!-- 1 Aug added ends here-->
+											<input type="text"  th:field="*{tenderNumber}" class="element contact-data contact-textbox zonun_text fwidth" placeholder="Tender Number">
+											<input type="text" name="subject" class=" element contact-data contact-textbox zonun_text fwidth" placeholder="Subject">
+											<textarea name="detail" th:field="${tenderMain.detail}" rows="10" cols="43" class="element contact-data zonun_textarea fwidth" placeholder="Details"></textarea>
+											
+											<!-- Newly Added -->
+										
+											<input  class="element date_zon element" th:field="*{issue_date1}" type="date" placeholder="Issue Date"  id="IssueDate">
+											 <input  class="element date_zon element" th:field="*{opening_date1}" type="date" placeholder="Opening Date"  id="openDate">
+											 <input  class="element date_zon element" th:field="*{last_date_of_submission1}" type="date" placeholder="Last Date of Submission"  id="closeDate">
+											 
+											
+							 				<!-- newly added ends here -->
+											
+
+
+							 				<!-- 1 Aug added -->
+											
+											
+											<!-- <div class="form-check">
+											  	<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+											  	<label class="form-check-label element contact-data fwidth" for="defaultCheck1">
+											    <h4 class="element contact-data fwidth" style="padding-left: 19px; padding-top: 5px;">Public Access</h4>
+											  	</label>
+											</div> -->
+											
+											
+											
+											<!-- 1 Aug added ends here-->
+											<input type="submit" name="contact-us-submit" value="Add Tender" class="element elbutton">
+										</form>
+										
+										<br>
+										
+				
+								</div>
+					
+				</div>
+				
+				
+				
+				</div>
+
+					
+					<div class="rightpanel archive-header">
+						
+						<p class="body_header" style="background-color: #2c6ac6;color: white;">Archive</p>
+						<div class="arcwrapper">
+						<button class="accordion acstyle">2018</button>
+							<span class="panel">
+								<p><a href="">January</a></p>
+								<p><a href="">Febuary</a></p>
+								<p><a href="">March</a></p>
+								<p><a href="">April</a></p>
+							</span>
+							
+						
+							<button class="accordion acstyle">2017</button>
+							
+							<span class="panel">
+								<p><a href="">January</a></p>
+								<p><a href="">Febuary</a></p>
+								<p><a href="">March</a></p>
+								<p><a href="">April</a></p>
+							</span>
+				
+
+							<button class="accordion acstyle">2016</button>
+							
+							<span class="panel">
+								<p><a href="">January</a></p>
+								<p><a href="">Febuary</a></p>
+								<p><a href="">March</a></p>
+								<p><a href="">April</a></p>
+							</span>
+						</div>
+					
+					</div>
+						<!--/////////////////////////-->
+				</div>
+			</div><!-- Close of bodycontainer-->			
+	<br><br><br>
+
+
+		<!--footer-->
+
+	</div> <!-- Close of fullbodycontainer-->
+
+	<!-- newly added -->
+	<!-- this is user created java script below -->
+    <script type="text/javascript" src="js/script.js"></script>
+    <!-- ends newly added -->
+
+
+    
+	<!--Bootstrap javascript import-->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	<script src="js/readmore.js" crossorigin="anonymous"></script>
+
+
+
+
+</body>
+</html>

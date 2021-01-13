@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{fragments/main_layout}" >
+<head>
+ <title>Index Page</title>
+</head>
+<body style="background-color: #f3f3f3;">
+
+    <!--  <div  layout:fragment="content" class="container mySpace"> -->
+    
+     <div  layout:fragment="content">
+
+
+	<div class="fullbodycontainer">
+		<div class="bodycontainer">
+			<div class="bodywrapper">
+					    
+		<!-- Form Content-->
+			<div class="form-container">
+					<h4 class="modhead">Supplier Registration</h4>   
+					
+							<div class="alert alert-info" th:if="${exist}">
+					<p class="text text-center">
+					  User with this Email already Exist
+					</p>
+							</div>					
+					       
+					
+				<div class="modal-body mod-pad">
+					<form th:action="@{/supregister}" th:object="${user}" method="post">
+						
+						<input type="text" name="user_full_name" placeholder="Full Name" class="modal-textbox">
+						
+						<div class="text text-danger" th:if="${#fields.hasErrors('user_full_name')}"
+					th:errors="*{user_full_name}">
+
+				        </div>
+				        
+				 
+						<input type="text" name="email" placeholder="Email"  class="modal-textbox">
+						<div class="text text-danger" th:if="${#fields.hasErrors('email')}"
+					th:errors="*{email}"></div>
+						
+						
+						<input type="text" name="user_phone" placeholder="Phone"  class="modal-textbox" ><br>
+							<div class="text text-danger" th:if="${#fields.hasErrors('user_phone')}"
+					th:errors="*{user_phone}"></div>
+						
+						
+						
+						
+						<input type="password" name="user_password" placeholder="Password"  class="modal-textbox" >
+						
+						<div class="text text-danger" th:if="${#fields.hasErrors('user_password')}"
+					th:errors="*{user_password}"></div>
+						
+						
+					<!-- 	<input type="text" name="re-pass" placeholder="Re-enter Password"  class="modal-textbox"><br>
+						 -->
+						
+						<input type="text" name="designation"  placeholder="Designation"  class="modal-textbox" >
+						
+							
+						<select th:field="*{district}" class="modal-textbox"  >
+							<!-- 		<option value="disabled selected">Select your Department</option> -->
+									<option th:each="district : ${districts}"
+									th:text="${district.name}"
+									th:value="${district.name}">
+									
+									</option>
+								</select>
+								
+								
+								
+								
+	
+						<textarea class="form-control modtextarea modal-textbox" th:field = "*{user_address}" rows="4" cols="5" placeholder=" Address" ></textarea>
+
+						<label class="lab">Select Departments</label><br>
+						
+						
+							<div th:each="department : ${departments}">
+								<div class="checkbox">
+								
+									<input type="checkbox" th:field="*{department_subscribtion}" th:value="${department.id}" >
+								<label th:text="${department.name}"> </label>
+								
+								
+								</div>
+								
+								</div>
+							
+							
+						
+						
+						
+						
+						<br>
+						
+
+						<!-- <div>
+							<span class="letterq">A</span>
+							<div class="container">
+  								<div class="row">
+	    							<div class="col-sm">
+	     								<input type="checkbox" name="staticvaluehere" value="staticvaluehere" class="mod_check"> <label class="lab2"> Aizawl Municipal Council</label> 
+	    							</div> 
+	   							 	<div class="col-sm">
+	     								<input type="checkbox" name="staticvaluehere" value="staticvaluehere" class="mod_check"> <label class="lab2"> Area Bay Municipal Council</label> 
+	    							</div>
+  								</div>
+							</div>
+						</div> -->
+
+						<br>
+						<br>
+						
+						
+						<div class="form-group">
+                			<div class="g-recaptcha" data-sitekey="6LcoTLEUAAAAAGp3e_vPdUyOJXIRxxKE4eUHRhqr"></div>
+                		</div>
+                		
+                		<br>
+						<input type="submit" name="submit" value="Submit" class="element elbutton">
+					</form>
+					
+
+				</div>
+			</div><!--END Form Content-->
+				
+			</div>
+		</div>
+	</div>
+
+	
+</body>
+</html>

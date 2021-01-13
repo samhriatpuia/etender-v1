@@ -1,0 +1,567 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
+
+
+
+<head>
+    <!-- Required meta tags -->
+   <!-- Bootstrap -->
+	
+ <!-- Required meta tags -->
+    <meta charset="utf-8">
+    
+
+
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+     <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+     <link rel="stylesheet" th:href="@{/css/css/font-awesome.min.css}">
+    <script th:src="@{/js/jquery.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
+    <script type="text/javascript" th:src="@{/js/main.js}"  src="/js/main.js"></script>
+    
+	<title>Public Service Delivery System</title>
+</head>
+
+<body>
+
+<p id="top"></p>
+<div class="banner">
+
+	<header>
+	<div class="hat">
+	<h1> <i class="fa fa-laptop"></i><span class="title-color"> Public Service Delivery System</span></h1>
+	</div>
+	
+	
+	
+	
+<div>
+    <ul class="nav navbar-nav">
+   
+      <li class="nav-item"    sec:authorize="!isAuthenticated()">
+        <a class="nav-link" href="/supregister">Register</a>
+      </li>
+       <li class="nav-item"  sec:authorize="!isAuthenticated()">
+        <a class="nav-link" href="/login">Log in</a>
+      </li>
+      <li class="nav-item"   sec:authorize="hasRole('ROLE_ADMIN')"  >
+        <a class="nav-link" href="/admin/profile">Profile</a>
+      </li>
+      
+      <li class="nav-item" sec:authorize="hasRole('ROLE_USER')">
+        <a class="nav-link" href="/users">Users</a>
+      </li> 
+    
+     </ul>
+     
+   
+     
+    
+  </div>
+  
+  <p>
+    <div class="abc" sec:authorize="isAuthenticated()">
+     <form  th:action="@{/logout}" method="post"  >
+  
+     	 <input type="submit" value="Logout" />
+     	 
+      
+    </form>
+     <span sec:authentication="principal.username"/></span>
+    </div>
+   
+    
+     
+  
+    
+    
+    <p></p>
+	
+	<div class="search_my">
+		<form>
+			<input type="search" class="search1" placeholder="search">
+			<button class="button1" type="submit"> <i class="fa fa-search"></i></button>
+     </form>
+  </div>
+  
+  <div class="clearfix"></div>
+  </header>
+  
+  <div class="nav1">
+ 
+<div class="navbar-header">
+	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarSupportedContent">
+	<i class="fa fa-bars"></i>
+	
+	</button>
+</div>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="nav navbar-nav">
+      <li class="active">
+        <a class="nav-link" href="#">Home </a>
+      </li>
+      <li>
+        <a class="nav-link" href="#about">About</a>
+      </li>
+      <li>
+        <a class="nav-link" href="#services">Services</a>
+      </li>
+      <li> 
+        <a class="nav-link" href="#gallery">Gallery</a>
+      </li>
+      <li>
+        <a class="nav-link" href="#contact">Contact</a>
+      </li>
+     
+    </ul>
+   
+  </div>
+
+</div>
+</div> 
+
+
+
+
+<div class="container" id="about">
+	<div class="about">
+		<h1>About</h1>
+		<h3> What we are</h3>
+		<p>This platform is for citizen who wants to pay , book submit any related documents online to save money for transportation and above all their precious time</p>
+		
+		<div class="row">
+			<div class="col-md-4 crl3 about_grid">
+				<i class="fa fa-keyboard-o fa-2x"></i>
+				<h4>MSeGS</h4>
+				<p>A programmer is an individual that writes/creates computer software or applications by giving the computer specific programming instru... </p>
+				<button type="button" class="more-bttn" data-toggle="modal" data-target="#exampleModal">
+				read more
+				</button>
+			</div>
+			
+			<div class="col-md-4 crl2 about_grid">
+				<i class="fa fa-university"></i>
+				<h4>ICT</h4>
+				<p>The Department of Information and Communication Technology was, in its nascent stage, functioning under the Department of Industry..</p>
+				<button type="button" class="more-bttn" data-toggle="modal" data-target="#exampleModal">
+				read more
+				</button>
+			</div>
+			
+			
+			<div class="col-md-4 crl3 about_grid">
+				<i class="fa fa-keyboard-o fa-2x"></i>
+				<h4>Programmer</h4>
+				<p>A programmer is an individual that writes/creates computer software or applications by giving the computer specific programming instru... </p>
+				<button type="button" class="more-bttn" data-toggle="modal" data-target="#exampleModal">
+				read more
+				</button>
+			</div>
+			
+			
+			
+		</div>
+		
+		
+	</div>
+
+</div>
+
+	
+
+<div class="services" id="services">
+	<div class="container">
+		<h1>Services</h1>
+		<h3>Best services</h3>
+		<p>You can select any services to pay bills, or submit documents  </p>
+		
+		<div class="row">
+		
+		<div class="col-md-2 crl4 about_grid">
+				<i class="fa fa-keyboard-o fa-2x"></i>
+				<h4>Electricity</h4>
+				<p>Electric bill pekna </p>
+				
+				 <a class="more-bttn" th:href="@{/electric}" method="get">Pay</a>
+				
+			</div>
+			
+			
+			<div class="col-md-2 crl5 about_grid">
+				<i class="fa fa-university"></i>
+				<h4>PHE</h4>
+				<p>Tui Bill Pekna</p>
+				 <a class="more-bttn" th:href="@{/electric}" method="get">Pay</a>
+				
+			</div>
+			
+			
+			<div class="col-md-2 crl6 about_grid">
+				<i class="fa fa-keyboard-o fa-2x"></i>
+				<h4>Revenue</h4>
+				<p>LSC Form</p>
+				 <a class="more-bttn" th:href="@{/electric}" method="get">Pay</a>
+				
+			</div>
+			
+			
+			<div class="col-md-2 crl4 about_grid">
+				<i class="fa fa-car fa-2x"></i>
+				<h4>Sumo</h4>
+				<p>Sumo Booking Counter</p>
+				 <a class="more-bttn" th:href="@{/sumo}" method="get">Pay</a>
+				
+			</div>
+			
+			
+			
+		<div class="col-md-2 crl5 about_grid">
+				<i class="fa fa-keyboard-o fa-2x"></i>
+				<h4>Programmer</h4>
+				<p>Electric bill pekna </p>
+				 <a class="more-bttn" th:href="@{/electric}" method="get">Pay</a>
+				
+			</div>
+			
+			
+			<div class="col-md-2 crl6 about_grid">
+				<i class="fa fa-university"></i>
+				<h4>ICT</h4>
+				<p>Tui Bill pekna</p>
+				 <a class="more-bttn" th:href="@{/electric}" method="get">Pay</a>
+				
+			</div>
+			
+			
+			<div class="col-md-2 crl4 about_grid">
+				<i class="fa fa-keyboard-o fa-2x"></i>
+				<h4>Programmer</h4>
+				<p>Sumo booking Counter </p>
+				 <a class="more-bttn" th:href="@{/electric}" method="get">Pay</a>
+				
+			</div>
+			
+			<div class="col-md-2 crl5 about_grid">
+				<i class="fa fa-keyboard-o fa-2x"></i>
+				<h4>Programmer</h4>
+				<p>Electric bill pekna </p>
+				 <a class="more-bttn" th:href="@{/electric}" method="get">Pay</a>
+				
+			</div>
+			
+			
+			<div class="col-md-2 crl6 about_grid">
+				<i class="fa fa-university"></i>
+				<h4>ICT</h4>
+				<p>tui Bill pekna</p>
+				 <a class="more-bttn" th:href="@{/electric}" method="get">Pay</a>
+				
+			</div>
+			
+			
+			<div class="col-md-2 crl4 about_grid">
+				<i class="fa fa-keyboard-o fa-2x"></i>
+				<h4>Programmer</h4>
+				<p>Sumo booking Counter </p>
+				 <a class="more-bttn" th:href="@{/electric}" method="get">Pay</a>
+				
+			</div>
+			
+			
+			<div class="col-md-2 crl5 about_grid">
+				<i class="fa fa-keyboard-o fa-2x"></i>
+				<h4>Programmer</h4>
+				<p>Electric bill pekna </p>
+				 <a class="more-bttn" th:href="@{/electric}" method="get">Pay</a>
+				
+			</div>
+			
+			
+			<div class="col-md-2 crl6 about_grid">
+				<i class="fa fa-university"></i>
+				<h4>ICT</h4>
+				<p>tui Bill pekna</p>
+				 <a class="more-bttn" th:href="@{/electric}" method="get">Pay</a>
+				
+			</div>
+			
+		   <div class="col-md-2 crl4 about_grid">
+				<i class="fa fa-keyboard-o fa-2x"></i>
+				<h4>Programmer</h4>
+				<p>Electric bill pekna </p>
+				 <a class="more-bttn" th:href="@{/electric}" method="get">Pay</a>
+				
+			</div>
+			
+			
+			<div class="col-md-2 crl5 about_grid">
+				<i class="fa fa-university"></i>
+				<h4>ICT</h4>
+				<p>tui Bill pekna</p>
+				 <a class="more-bttn" th:href="@{/electric}" method="get">Pay</a>
+				
+			</div>
+			
+			
+			<div class="col-md-2 crl6 about_grid">
+				<i class="fa fa-keyboard-o fa-2x"></i>
+				<h4>Programmer</h4>
+				<p>Sumo booking Counter </p>
+				 <a class="more-bttn" th:href="@{/electric}" method="get">Pay</a>
+				
+			</div>
+			
+			
+			<div class="col-md-2 crl4 about_grid">
+				<i class="fa fa-keyboard-o fa-2x"></i>
+				<h4>Programmer</h4>
+				<p>LSC fghdfg fhjdf</p>
+				 <a class="more-bttn" th:href="@{/electric}" method="get">Pay</a>
+				
+			</div>
+			
+			
+			
+		<div class="col-md-2 crl5 about_grid">
+				<i class="fa fa-keyboard-o fa-2x"></i>
+				<h4>Programmer</h4>
+				<p>Electric bill pekna </p>
+				 <a class="more-bttn" th:href="@{/electric}" method="get">Pay</a>
+				
+			</div>
+			
+			
+			<div class="col-md-2 crl6 about_grid">
+				<i class="fa fa-university"></i>
+				<h4>ICT</h4>
+				<p>tui Bill pekna</p>
+				 <a class="more-bttn" th:href="@{/electric}" method="get">Pay</a>
+				
+			</div>
+			
+			
+		   
+		   
+		   
+		
+		
+			
+			
+			
+			
+			
+		</div>		
+	</div>
+	
+	
+
+	
+</div>		
+	
+
+	
+	
+<div class="gallery" id="gallery">
+	<div class="container">
+	
+ 		<h1>Gallery</h1>
+ 		<hr>
+ 		
+ 		<div class="row ">
+ 		
+			<div class="col-lg-4 col-sm-6 other-col-box text-left">
+ 				<div class="card hoverable small card-small">
+  					<img class="img-fluid" src="../images/robert.jpg" width="50" height="300" alt="John" style="width:100%">
+  						<h3>Robert Romawia Royte</h3>
+  							<p class="title">Hon'ble Minister ICT</p>
+  								<p>+91-389-2322147(Office)</p>
+  
+  										<a href="#"><i class="fa fa-twitter"></i></a> 
+  												<a href="#"><i class="fa fa-linkedin"></i></a> 
+  													<a href="#"><i class="fa fa-facebook"></i></a> 
+  														<p><button>Contact</button></p>
+			    </div>
+			</div>
+ 		
+ 			<div class="col-lg-4 col-sm-6 other-col-box text-left">
+ 				<div class="card hoverable small card-small">
+  					<img class="img-fluid" src="../images/ajmal-tak.jpeg" width="50" height="300" alt="John" style="width:100%">
+  						<h3>Amjad Tak,IAS</h3>
+  							<p class="title">Secretary, ICT</p>
+  								<p>+91-389-2310908(Office)</p>
+  
+  										<a href="#"><i class="fa fa-twitter"></i></a> 
+  												<a href="#"><i class="fa fa-linkedin"></i></a> 
+  													<a href="#"><i class="fa fa-facebook"></i></a> 
+  														<p><button>Contact</button></p>
+			    </div>
+			 </div>
+			    
+			    
+			    <div class="col-lg-4 col-sm-6 other-col-box text-left">
+			     	<div class="card hoverable small card-small">
+  					<img class="img-fluid" src="../images/muana.jpg" width="50" height="300" alt="John" style="width:100%">
+  						<h3>Dr. Lalthlamuana</h3>
+  							<p class="title">CIO, ICT</p>
+  								<p>+91-389-2310908</p>
+  
+  										<a href="#"><i class="fa fa-twitter"></i></a> 
+  												<a href="#"><i class="fa fa-linkedin"></i></a> 
+  													<a href="#"><i class="fa fa-facebook"></i></a> 
+  														<p><button>Contact</button></p>
+			    	</div>
+			    </div>
+			    
+			    
+			<div class="col-lg-4 col-sm-6 other-col-box text-left">
+			    <div class="card hoverable small card-small">
+  					<img class="img-fluid" src="../images/isaac.png" width="50" height="300" alt="John" style="width:100%">
+  						<h3>Isaac</h3>
+  							<p class="title">Project Manager</p>
+  								<p>MSeGS</p>
+  
+  										<a href="#"><i class="fa fa-twitter"></i></a> 
+  												<a href="#"><i class="fa fa-linkedin"></i></a> 
+  													<a href="#"><i class="fa fa-facebook"></i></a> 
+  														<p><button>Contact</button></p>
+			    </div>
+ 	    	</div>	
+ 	    
+ 	    
+ 	  </div>  
+ 	    		
+ 	    		
+    		
+ </div>	 		
+ 	    		
+ <div class="container-fluid" align="center">
+  <h1>Mizoram Photo Collection</h1>
+  
+  <div id="jsaAboutCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#jsaAboutCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#jsaAboutCarousel" data-slide-to="1"></li>
+      <li data-target="#jsaAboutCarousel" data-slide-to="2"></li>
+      <li data-target="#jsaAboutCarousel" data-slide-to="3"></li>
+    </ol>
+ 
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+ 
+	  <div class="item active">
+        <img th:src="@{/images/msegs-office.png}" width="1000px" height="400px" alt="JSA-About" />
+        <div class="carousel-caption">
+          <h3>MSeGS Office</h3>
+        </div>
+      </div>
+    
+      <div class="item">
+        <img th:src="@{/images/night1.jpeg}" width="1000px" height="300px" alt="JSA-About" />
+        <div class="carousel-caption">
+          <h3>Aizawl Night</h3>
+        </div>
+      </div>
+ 
+      <div class="item">
+        <img th:src="@{/images/night2.jpg}" width="1000px" height="200px" alt="JSA-About" />
+        <div class="carousel-caption">
+          <h3>Aizawl City Night</h3>
+        </div>
+      </div>
+  
+  	<div class="item">
+        <img th:src="@{/images/rihdil.jpg}" width="1000px" height="300px" alt="JSA-About" />
+        <div class="carousel-caption">
+          <h3>Rihdil</h3>
+        </div>
+      </div>
+      
+   </div>
+ 
+ </div>	    		
+</div>				
+ </div> 				
+ 				
+ 				
+<hr>			
+<div class="inform" id="contact">
+
+	<div class="container">
+	
+		<h1>Contact Us..</h1>
+		<div class="inform_form">
+			<form action="#" method="post">
+				<div class="row">
+					<div class="col-sm-4 col-md-4 form-left">
+						<input type="text" name="name" placeholder="Name" required="">
+					</div>
+					<div class="col-sm-4 col-md-4  form-left">
+						<input type="email" name="email" placeholder="Email" required="">
+					</div>
+					<div class="col-sm-4 col-md-4  form-left">
+						<input type="text" name="phone" placeholder="Phone" required="">
+					</div>
+					
+				</div>
+				<textarea name="message" placeholder="message" required=""> </textarea>
+				<input type="submit" value="Submit">
+			</form>
+		</div>
+	  </div>	
+  </div> 	
+	
+	
+	  
+					
+ 			
+ 			
+ 			
+ 			
+ 		
+ 		
+ 		
+ 		
+ 			
+
+
+			
+	
+	
+	
+	
+
+<div id="myBtn">		
+<a href="#top"><i class="fa fa-chevron-circle-up fa-3x"  aria-hidden="true"></i></a>	
+</div>
+
+
+</body>
+</html>		
+		
+		
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

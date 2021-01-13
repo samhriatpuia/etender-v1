@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{fragments/main_layout}" >
+<head>
+ <title>Index Page</title>
+</head>
+<body style="background-color: #f3f3f3;">
+
+    <!--  <div  layout:fragment="content" class="container mySpace"> -->
+    
+     <div  layout:fragment="content">
+
+<h1>Spring Boot - Upload Status</h1>
+
+<div th:if="${message}">
+    <h2 th:text="${message}"/>
+    
+    <a th:href="${Imgpath}">view Image</a>
+    
+    <img alt="test" th:src="${Imgpath}"/>
+</div>
+
+</body>
+</html>

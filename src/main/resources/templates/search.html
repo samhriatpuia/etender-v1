@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{fragments/main_layout}" >
+<head>
+ <title>Index Page</title>
+</head>
+<body style="background-color: #f3f3f3;">
+
+    <!--  <div  layout:fragment="content" class="container mySpace"> -->
+    
+     <div  layout:fragment="content">
+     
+
+	<div class="fullbodycontainer">
+		<!-- header
+			*********************************** -->
+		<div class="bodycontainer">
+			
+			<div class="banner">
+				 <!--img src="images/Banner.jpg"-->
+			</div>
+
+			<div class="bodywrapper">
+					<!-- Search area placed here-->
+					
+				<div class="searchArea">
+					<p class="searchtext">Get the best deal of Tender</p>
+					<p class="searchtext2">Search Tender</p>
+					<div class="buttonArea">
+							<!--Search Form-->
+<!-- <<<<<<< HEAD
+						<form name="search" th:action="@{/tendenMain/search}" method="GET">
+======= -->
+						<form action="/tenderMain1/search" method="GET">
+							
+								<input type="text" name="general" class="element" placeholder="What are you looking for?">
+							<!--div class="inputWithIcon"-->
+								<select name="department" class="element search_ele" >
+									<option value="">Search By Department</option>
+									<option th:each="tempDept : ${departments}" th:value="${tempDept.id}" th:text="${tempDept.name}">
+						
+								</select>
+								<!--img src="images/dropdown.svg"-->
+							<!--/div-->
+							
+							
+							
+						<!-- 	<input type="date" id="submitdate" name="date" value="Search By Date" class="element"> -->
+							
+							
+							
+							<input type="submit" name="submit" value="Submit" class="element elbutton">
+
+						</form>
+					</div>
+				</div>
+			</div><!--Close bodywrapper-->
+	
+						<!--Dynamic Part -->
+						<!--**********
+								**********
+								start for loop
+								
+								*********
+								********	-->
+				<div class="bodywrapper">
+					<div class="main1">
+						<div class="tenderbox">
+
+							<p class="body_header">Tender
+
+                                <span class="float-right dwnload all_show_ten">
+                                  <!--   <a th:href="@{/tenderMain/getValidTender}" th:text="${showAllValid}" ></a> --></span>
+                            </p>
+								
+								
+								
+								<!--/////////////////////////-->
+							
+							
+							
+							<table>
+							<tbody>
+							<tr th:each="tempUser : ${allTenderMain}">							
+							<td class="tenderfile">
+							
+							
+							<div id="data">
+								<div id="tender-header">
+							
+									<div class="tender-text float-left">
+										<p  th:text="${tempUser.tenderNumber}"  />
+									</div>
+									<div th:each="temp : ${departments}" class="tender-text float-right blue"> 
+										<p  th:if="${tempUser.department == temp.id}" th:text="${temp.name}"  />
+										<!-- <p  th:each="temp : ${dept}"> -->
+									</div>				
+								</div>
+								<br>
+								<div class="tender-notice" >
+										<p th:text="${tempUser.subject}"  />
+
+								</div><br>
+								
+								
+								<!-- <div id="tender-content" class="tender-text ten-head">
+								<p th:text="${tempUser.detail}"  />
+ -->
+
+								<div id="tender-content" class="tender-text ten-head">
+								<!-- <p><span th:text="${tempUser.detailVO}"/>
+								<span id="dots">...</span><span id="more"  th:text="${tempUser.detail}"/></p>	 -->
+					
+								<p th:text="${tempUser.detail}"/></p>
+								</div>
+
+								</div><br>
+								<div class="tender-text">
+								
+								
+								<!-- <button onclick="myFunction()" id="myBtn" class="float-left read-more">Read more</button> 
+								
+								
+									<div id="download-pdf" class="float-right dwnload">
+									<a href="" download>Download PDF</a></div>
+									
+									 -->
+									 
+									 
+									<div id="download-pdf" class="float-right dwnload">
+									<!-- *****************NEW***************** -->
+									
+									<!-- modals code -->
+									<a  th:href="@{'/download/downloadFile/'+${tempUser.id}}"  >Download</a>
+									<!-- Button to Open the Modal -->
+								<!-- 	<a href="" class="btn" data-toggle="modal" data-target="#myModal"><img src="/../images/download.svg" style="height: 17px;width: 17px;">Download</a> -->
+									
+									<!-- The Modal -->
+									<div class="modal" id="myModal">
+									  	<div class="modal-dialog modal-dialog-centered">
+									   	 	<div class="modal-content">
+
+										      	<!-- Modal Header -->
+										      	<div class="modal-header">
+										        	<h4 class="modal-title" style="color: #05b18b;">Downloads</h4>
+										        	<button type="button" class="close" data-dismiss="modal">&times;</button>
+										      	</div>
+
+										      	<!-- Modal body -->
+										      	<div class="modal-body">
+										      		<ol>
+										      			<li><a href="" download>Lalramfangzauzawkzela Tochhawng PDF</a></li>
+										      			<li><a href="" download>Lalramfangzauzawkzela Tochhawng PDF</a></li>
+
+										      		</ol>
+										        	
+										 
+										      	</div>
+
+										      <!-- Modal footer -->
+										      	
+
+									    	</div>
+									  	</div>
+									</div>
+
+
+
+
+
+									<!-- Newly added Modals Ends-->
+
+										<!-- *****************NEW***************** -->
+								<!-- 	<a href="">
+										<img src="/../images/001-edit.svg" style="height: 17px;width: 17px;"> 
+										Edit</a> -->
+								<!-- 	<a href="" style="color:#828282 !important">
+									<img src="/../images/002-delete.svg" style="height: 17px;width: 17px;"> 
+									Delete</a> -->
+										<!-- *****************ENDS***************** -->
+								</div>
+									
+									
+								</div><br>
+								<hr>
+								<div id="tender-date-footer" class="tender-text flex-container">
+								
+								
+								<!-- <span>Issue Datasdfasde: <i  th:text="${#dates.formatISO(${tempUser.issueDate})}"> </i></span> --> 
+							<!-- 	The time is: <strong th:text="*{#temporals.format(ab, 'dd/MM/yyyy')}">31/12/2015 15:00</strong> -->
+							
+									<!-- <span th:text="${#dates.format(tempUser.issueDate * 1000, 'dd-MM-yyyy')}">date</span> -->
+									
+									<span>Issue Date: <i  th:text="${#dates.format(tempUser.issueDate * 1000L, 'dd-MM-yyyy')}"> </i></span> 
+									<span>Open Date:  <i  th:text="${#dates.format(tempUser.openingDate * 1000L, 'dd-MM-yyyy')}"></i></span>
+									<span>Last Date of Submission: <i  th:text="${#dates.format(tempUser.lastDateOfSubmission * 1000L, 'dd-MM-yyyy')}"> </i></span>
+
+								</div>
+							</div>
+							
+							</td>
+							</tr>
+							</tbody>
+							</table>
+							
+							<!--  Pagination
+							 -->
+							
+							 <ul class="nav nav-pills" >
+	
+			<li class="nav-item" th:each="i : ${#numbers.sequence(0,allTenderMain.totalPages-1)}">
+			
+			
+			<a  th:href="@{/tenderMain1/search?general={general}&department={department}(general=${general},department=${department},page=${i})}"  th:text="${i}" class="nav-link"
+			
+			th:classappend="${currentPage}==${i}? 'active':''"></a>
+	
+			 </li>
+	
+			</ul>	
+			
+			
+							
+							
+							
+							<!-- <div class="tenderfile" id="data">
+								<div id="tender-header">
+							
+									<div class="tender-text float-left">
+										No: 996-E-in-c(PD)/11
+									</div>
+									<div class="tender-text float-right blue"> 
+										Power & Electricity Department(Office of Engineer-in Chief)
+									</div>				
+								</div>
+								<br>
+								<div class="tender-notice" >
+									Notice Inviting Tender No. 8 of 2017-18
+								</div><br>
+								<div id="tender-content" class="tender-text ten-head">
+								<p>The Engineer-in-Chief,Power and Electricity invites sealed from eligible contractor for the following works Tender No. 8 of 2017: Construction of 2MVA, 33/11kV Sub-Station at P&E. Saiha
+								<span id="dots">...</span><span id="more">erisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta.</span></p>	
+								</div><br>
+
+								<div class="tender-text">
+									
+									<button onclick="myFunction()" id="myBtn" class="float-left read-more">Read more</button>
+									<div id="download-pdf" class="float-right dwnload">
+									<a href="" download>Download PDF</a></div>
+								</div><br>
+								<hr>
+								<div id="tender-date-footer" class="tender-text flex-container">
+									<span>Issue Date: 08 Jan, 2018</span>
+									<span>Open Date: 24 Jan 2018 02:00pm</span>
+									<span>Last Date of Submission: 24 Jan 2108 01:00Pm</span>
+
+								</div>
+							</div> -->
+				</div>
+
+					
+					<div class="rightpanel archive-header">
+						
+						<p class="body_header" style="background-color: #2c6ac6;color: white;">Archive</p>
+						<div class="arcwrapper">
+						
+								<button class="accordion acstyle">2019</button>
+							<span class="panel">
+								<p><a th:href="@{/archive/myArchive/Jan/2019}">January</a></p>
+								<p><a th:href="@{/archive/myArchive/Feb/2019}">February</a></p>
+								<p><a th:href="@{/archive/myArchive/Mar/2019}">March</a></p>
+								<p><a th:href="@{/archive/myArchive/Apr/2019}">April</a></p>
+								<p><a th:href="@{/archive/myArchive/May/2019}">May</a></p>
+								<p><a th:href="@{/archive/myArchive/Jun/2019}">June</a></p>
+								<p><a th:href="@{/archive/myArchive/Jul/2019}">July</a></p>
+
+							</span>
+							
+							
+						<button class="accordion acstyle">2018</button>
+							<span class="panel">
+								<p><a th:href="@{/archive/myArchive/Jan/2018}">January</a></p>
+								<p><a th:href="@{/archive/myArchive/Feb/2018}">February</a></p>
+								<p><a th:href="@{/archive/myArchive/Mar/2018}">March</a></p>
+								<p><a th:href="@{/archive/myArchive/Apr/2018}">April</a></p>
+								<p><a th:href="@{/archive/myArchive/May/2018}">May</a></p>
+								<p><a th:href="@{/archive/myArchive/Jun/2018}">June</a></p>
+								<p><a th:href="@{/archive/myArchive/Jul/2018}">July</a></p>
+								<p><a th:href="@{/archive/myArchive/Aug/2018}">August</a></p>
+								<p><a th:href="@{/archive/myArchive/Sep/2018}">September</a></p>
+								<p><a th:href="@{/archive/myArchive/Oct/2018}">October</a></p>
+								<p><a th:href="@{/archive/myArchive/Nov/2018}">November</a></p>
+								<p><a th:href="@{/archive/myArchive/Dec/2018}">December</a></p>
+							</span>
+							
+					
+							
+						
+							<button class="accordion acstyle">2017</button>
+							
+							<span class="panel">
+								<p><a th:href="@{/archive/myArchive/Jan/2017}">January</a></p>
+								<p><a th:href="@{/archive/myArchive/Feb/2017}">February</a></p>
+								<p><a th:href="@{/archive/myArchive/Mar/2017}">March</a></p>
+								<p><a th:href="@{/archive/myArchive/Apr/2017}">April</a></p>
+								<p><a th:href="@{/archive/myArchive/May/2017}">May</a></p>
+								<p><a th:href="@{/archive/myArchive/Jun/2017}">June</a></p>
+								<p><a th:href="@{/archive/myArchive/Jul/2017}">July</a></p>
+								<p><a th:href="@{/archive/myArchive/Aug/2017}">August</a></p>
+								<p><a th:href="@{/archive/myArchive/Sep/2017}">September</a></p>
+								<p><a th:href="@{/archive/myArchive/Oct/2017}">October</a></p>
+								<p><a th:href="@{/archive/myArchive/Nov/2017}">November</a></p>
+								<p><a th:href="@{/archive/myArchive/Dec/2017}">December</a></p>
+							</span>
+				
+
+							<button class="accordion acstyle">2016</button>
+							
+							<span class="panel">
+								<p><a th:href="@{/archive/myArchive/Jan/2016}">January</a></p>
+								<p><a th:href="@{/archive/myArchive/Feb/2016}">February</a></p>
+								<p><a th:href="@{/archive/myArchive/Mar/2016}">March</a></p>
+								<p><a th:href="@{/archive/myArchive/Apr/2016}">April</a></p>
+								<p><a th:href="@{/archive/myArchive/May/2016}">May</a></p>
+								<p><a th:href="@{/archive/myArchive/Jun/2016}">June</a></p>
+								<p><a th:href="@{/archive/myArchive/Jul/2016}">July</a></p>
+								<p><a th:href="@{/archive/myArchive/Aug/2016}">August</a></p>
+								<p><a th:href="@{/archive/myArchive/Sep/2016}">September</a></p>
+								<p><a th:href="@{/archive/myArchive/Oct/2016}">October</a></p>
+								<p><a th:href="@{/archive/myArchive/Nov/2016}">November</a></p>
+								<p><a th:href="@{/archive/myArchive/Dec/2016}">December</a></p>
+							</span>
+
+
+
+
+
+					</div>
+					
+					</div>
+						<!--/////////////////////////-->
+				</div>
+
+				<script>
+					var acc = document.getElementsByClassName("accordion");
+					var i;
+
+					for (i = 0; i < acc.length; i++) {
+					  acc[i].addEventListener("click", function() {
+					    this.classList.toggle("active");
+					    var panel = this.nextElementSibling;
+					    if (panel.style.display === "block") {
+					      panel.style.display = "none";
+					    } else {
+					      panel.style.display = "block";
+					    }
+					  });
+					}
+					 function myFunction() {
+					  var dots = document.getElementById("dots");
+					  var moreText = document.getElementById("more");
+					  var btnText = document.getElementById("myBtn");
+
+					  if (dots.style.display === "none") {
+					    dots.style.display = "inline";
+					    btnText.innerHTML = "Read more"; 
+					    moreText.style.display = "none";
+					  } else {
+					    dots.style.display = "none";
+					    btnText.innerHTML = "Read less"; 
+					    moreText.style.display = "inline";
+					  }
+					}
+					
+					var myepoch = document.getElementsByClassName("issuedate");
+					var myDate = new Date( myepoch *1000); 
+			
+				</script>
+		
+		</div><!-- Close of bodycontainer-->
+	<br><br><br>
+
+
+		<!--footer-->
+
+	</div> <!-- Close of fullbodycontainer-->
+	<!--Bootstrap javascript import-->
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	<script src="../js/readmore.js" crossorigin="anonymous"></script>
+</body>
+</html>

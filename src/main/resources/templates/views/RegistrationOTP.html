@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{fragments/main_layout}" >
+<head>
+ <title>Index Page</title>
+</head>
+<body style="background-color: #f3f3f3;">
+
+    <!--  <div  layout:fragment="content" class="container mySpace"> -->
+    
+     <div  layout:fragment="content">
+
+<div class="fullbodycontainer">
+		<div class="bodycontainer container">
+			<div class="bodywrapper">
+					    
+		<!-- Form Content-->
+			<div class="form-container">
+			
+			<div class="alert alert-info" th:if="${error}">
+					<p class="text text-center">
+					 OTP Not Matching!! Resend OTP
+					</p>
+			</div>
+			
+			
+			<form th:action="@{/otpCompare}" method="GET">
+			
+					<br>
+						
+						<input type="text" th:value="${otp}" name="otp" placeholder="OTP" class="modal-textbox">
+						
+						
+						
+							<br>
+						<input type="submit" name="submit" value="Submit" class="element elbutton">
+						
+					</form>
+			
+			
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</body>
+</html>

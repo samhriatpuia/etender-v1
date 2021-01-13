@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{fragments/main_layout}" >
+<head>
+ <title>Index Page</title>
+</head>
+<body style="background-color: #f3f3f3;">
+
+    <!--  <div  layout:fragment="content" class="container mySpace"> -->
+    
+     <div  layout:fragment="content">
+		<div class="fullbodycontainer">
+		<div class="bodycontainer">
+			<div class="bodywrapper">
+					    
+		<!-- Form Content-->
+			<div class="form-container cont-half cont">
+					<h4 class="modhead">Login</h4>          
+					
+				<div class="modal-body mod-pad ">
+					<div class="welcome">Welcome!<br> <span>Login to access your portal </span></div><br>
+					
+					<div class="alert alert-danger" th:if="${param.error}">
+	
+     <p>Invalid Email or Password</p>	
+	</div>
+					
+					<form th:action="@{/login}"  method="post">
+					
+						<input type="text" name="username"  placeholder="Username/email"  class="modal-textbox text-ar" ><br>
+						
+						<input type="password" name="password" placeholder="Password"  class="modal-textbox text-ar varbb">
+					
+
+						<br>
+						<input type="submit" name="submit" value="Submit" class="element elbutton">
+						
+						<div class="forgetpass"><label>Did you</label> <a th:href="@{index.html}" class="forgetyourpassword">forget your password?</a></div><br>
+						
+					</form>
+					
+
+				</div>
+			</div><!--END Form Content-->
+				
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>
